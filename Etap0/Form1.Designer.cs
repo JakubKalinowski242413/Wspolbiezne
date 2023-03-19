@@ -172,6 +172,7 @@
             resources.ApplyResources(button17, "button17");
             button17.Name = "button17";
             button17.UseVisualStyleBackColor = true;
+            button17.Click += handle_search_click;
             // 
             // button18
             // 

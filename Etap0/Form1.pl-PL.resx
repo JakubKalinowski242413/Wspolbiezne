@@ -57,46 +57,143 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="button4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 92</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="button4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="button4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 72</value>
+  </data>
   <data name="button4.Text" xml:space="preserve">
     <value>7</value>
+  </data>
+  <data name="button5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 244</value>
+  </data>
+  <data name="button5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="button5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 68</value>
   </data>
   <data name="button5.Text" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="button6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 168</value>
+  </data>
+  <data name="button6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="button6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 72</value>
+  </data>
   <data name="button6.Text" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>166, 168</value>
+  </data>
+  <data name="button1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 72</value>
   </data>
   <data name="button1.Text" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>166, 244</value>
+  </data>
+  <data name="button2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 68</value>
+  </data>
   <data name="button2.Text" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>166, 92</value>
+  </data>
+  <data name="button3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="button3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 72</value>
   </data>
   <data name="button3.Text" xml:space="preserve">
     <value>8</value>
   </data>
+  <data name="button7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>312, 168</value>
+  </data>
+  <data name="button7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="button7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 72</value>
+  </data>
   <data name="button7.Text" xml:space="preserve">
     <value>6</value>
+  </data>
+  <data name="button8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>312, 244</value>
+  </data>
+  <data name="button8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="button8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 68</value>
   </data>
   <data name="button8.Text" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="button9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>312, 92</value>
+  </data>
+  <data name="button9.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="button9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 72</value>
+  </data>
   <data name="button9.Text" xml:space="preserve">
     <value>9</value>
+  </data>
+  <data name="button10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 317</value>
+  </data>
+  <data name="button10.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="button10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>430, 68</value>
   </data>
   <data name="button10.Text" xml:space="preserve">
     <value>0</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="textBox1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 20pt</value>
+  </data>
+  <data name="textBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 34</value>
+  </data>
+  <data name="textBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="textBox1.MaxLength" type="System.Int32, mscorlib">
     <value>30</value>
   </data>
   <data name="textBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>492, 52</value>
+    <value>431, 43</value>
   </data>
   <data name="textBox1.Text" xml:space="preserve">
     <value>80085</value>
@@ -108,8 +205,14 @@
   <data name="button11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="button11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>502, 92</value>
+  </data>
+  <data name="button11.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
   <data name="button11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 96</value>
+    <value>94, 72</value>
   </data>
   <data name="button11.Text" xml:space="preserve">
     <value>+</value>
@@ -117,8 +220,14 @@
   <data name="button12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="button12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>502, 168</value>
+  </data>
+  <data name="button12.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
   <data name="button12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 96</value>
+    <value>94, 72</value>
   </data>
   <data name="button12.Text" xml:space="preserve">
     <value>*</value>
@@ -126,8 +235,14 @@
   <data name="button13.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="button13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>601, 92</value>
+  </data>
+  <data name="button13.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
   <data name="button13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 96</value>
+    <value>94, 72</value>
   </data>
   <data name="button13.Text" xml:space="preserve">
     <value>-</value>
@@ -135,8 +250,14 @@
   <data name="button14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="button14.Location" type="System.Drawing.Point, System.Drawing">
+    <value>601, 168</value>
+  </data>
+  <data name="button14.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
   <data name="button14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 96</value>
+    <value>94, 72</value>
   </data>
   <data name="button14.Text" xml:space="preserve">
     <value>/</value>
@@ -144,8 +265,14 @@
   <data name="button15.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="button15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>502, 317</value>
+  </data>
+  <data name="button15.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
   <data name="button15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 91</value>
+    <value>192, 68</value>
   </data>
   <data name="button15.Text" xml:space="preserve">
     <value>=</value>
@@ -153,8 +280,14 @@
   <data name="button16.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="button16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>601, 242</value>
+  </data>
+  <data name="button16.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
   <data name="button16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 96</value>
+    <value>94, 72</value>
   </data>
   <data name="button16.Text" xml:space="preserve">
     <value>I'm feeling lucky</value>
@@ -162,8 +295,14 @@
   <data name="button17.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="button17.Location" type="System.Drawing.Point, System.Drawing">
+    <value>502, 242</value>
+  </data>
+  <data name="button17.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
   <data name="button17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 96</value>
+    <value>94, 72</value>
   </data>
   <data name="button17.Text" xml:space="preserve">
     <value>Search</value>
@@ -171,17 +310,32 @@
   <data name="button18.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="button18.Location" type="System.Drawing.Point, System.Drawing">
+    <value>502, 19</value>
+  </data>
+  <data name="button18.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
   <data name="button18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 91</value>
+    <value>192, 68</value>
   </data>
   <data name="button18.Text" xml:space="preserve">
     <value>C</value>
   </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>7, 15</value>
+  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>832, 553</value>
+    <value>730, 421</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>850, 600</value>
+    <value>746, 460</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>746, 460</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
