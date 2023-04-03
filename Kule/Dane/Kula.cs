@@ -8,5 +8,26 @@ namespace Kule.Dane
 {
     internal class Kula
     {
+        private float promien;
+        private float pozycjaX;
+        private float pozycjaY;
+        private float predkoscX;
+        private float predkoscY;
+
+
+        public Kula(float promien, float pozycjaX, float pozycjaY, float predkoscX, float predkoscY)
+        {
+            Promien = promien;
+            PozycjaX = pozycjaX;
+            PozycjaY = pozycjaY;
+            PredkoscX = predkoscX;
+            PredkoscY = predkoscY;
+        }
+
+        public float Promien { get => promien; set => promien = value; }
+        public float PozycjaX { get => pozycjaX; set => pozycjaX = value; }
+        public float PozycjaY { get => pozycjaY; set => pozycjaY = value; }
+        public float PredkoscX { get => predkoscX; set => predkoscX = value; }
+        public float PredkoscY { get => predkoscY; set => predkoscY = value; }
     }
 }
