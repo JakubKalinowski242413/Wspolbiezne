@@ -20,12 +20,9 @@ namespace Kule.Prezentacja
             {"violet", Brushes.Violet},
             {"green", Brushes.Green},
             {"yellow", Brushes.Yellow},
+            {"grey", Brushes.Gray},
+            {"brown", Brushes.Brown}
         };
-        
-        /*private Brush[] brushes = new Brush[]
-        {
-            Brushes.Pink, Brushes.Blue, Brushes.Violet, Brushes.Green, Brushes.Yellow, Brushes.Red
-        };*/
 
         public Rysowanie(BasenZKulkami basenZKulkami)
         {
@@ -42,11 +39,13 @@ namespace Kule.Prezentacja
         {
             for(int i = 0; i < 6; i++)
             {
-                Kula kula = new Kula((random.Next() % 20) + 20,
-                    100*i + random.Next() % 20,
-                    200 + random.Next() % 20, 
-                    random.Next()%5 + 5, 
-                    random.Next() % 5 + 5, 
+                int wspolczynnikMasyKulki = random.Next(10,40);
+                int wspolczynnikKierunkuKulki = random.Next(5, 501);
+                Kula kula = new Kula(wspolczynnikMasyKulki,
+                    100*(i+1) + random.Next(0, 21),
+                    200 + random.Next(0, 21), 
+                    wspolczynnikKierunkuKulki / wspolczynnikMasyKulki, 
+                    (501 - wspolczynnikKierunkuKulki) / wspolczynnikMasyKulki, 
                     brushes.ElementAt(random.Next(0, brushes.Count)).Value);
                 basenZKulkami.wrzucKulke(kula);
             }

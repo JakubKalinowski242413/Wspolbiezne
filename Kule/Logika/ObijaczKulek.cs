@@ -71,12 +71,13 @@ namespace Kule.Logika
 
         private void zderzenieKulek(Kula kula1, Kula kula2)
         {
+            // THIS PART IS NOT NEEDED FOR ETAP1
             // TODO: fix (balls can oscilate now, that's bad for your health)
             // We could use momentum equation for speed calculation (mass and speed)
-            kula1.PredkoscX = -kula1.PredkoscX;
+      /*      kula1.PredkoscX = -kula1.PredkoscX;
             kula2.PredkoscX = -kula2.PredkoscX;
             kula1.PredkoscY = -kula1.PredkoscY;
-            kula2.PredkoscY = -kula2.PredkoscY;
+            kula2.PredkoscY = -kula2.PredkoscY;*/
             kula1.Kolor = Brushes.Red;
             kula2.Kolor = Brushes.Red;
         }
