@@ -38,5 +38,20 @@ namespace Kule
             obj.ruszWszystkieKule(listaKulek);
             this.Refresh();
         }
+
+        private void StartStop_Click(object sender, EventArgs e)
+        {
+            if(StartStop.BackColor == Color.Lime)
+            {
+                StartStop.Text = "STOP";
+                StartStop.BackColor = Color.Red;
+            }
+            else
+            {
+                StartStop.Text = "START";
+                StartStop.BackColor = Color.Lime;
+            }
+        }
+
     }
 }
