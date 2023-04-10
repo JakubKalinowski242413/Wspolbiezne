@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Kule.Dane
 {
-    internal class Kula
+    public class Kula
     {
         private float promien;
         private float pozycjaX;
