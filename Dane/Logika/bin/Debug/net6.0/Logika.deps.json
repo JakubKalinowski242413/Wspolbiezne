@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Logika/1.0.0": {
+        "dependencies": {
+          "Dane": "1.0.0"
+        },
+        "runtime": {
+          "Logika.dll": {}
+        }
+      },
+      "Dane/1.0.0": {
+        "runtime": {
+          "Dane.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Logika/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Dane/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

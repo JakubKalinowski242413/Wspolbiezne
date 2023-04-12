@@ -1,0 +1,15 @@
+C:\Users\TheWojwymX\Desktop\Wspolbiezne\Dane\Logika\bin\Debug\net6.0\Logika.deps.json
+C:\Users\TheWojwymX\Desktop\Wspolbiezne\Dane\Logika\bin\Debug\net6.0\Logika.dll
+C:\Users\TheWojwymX\Desktop\Wspolbiezne\Dane\Logika\bin\Debug\net6.0\Logika.pdb
+C:\Users\TheWojwymX\Desktop\Wspolbiezne\Dane\Logika\bin\Debug\net6.0\Dane.dll
+C:\Users\TheWojwymX\Desktop\Wspolbiezne\Dane\Logika\bin\Debug\net6.0\Dane.pdb
+C:\Users\TheWojwymX\Desktop\Wspolbiezne\Dane\Logika\obj\Debug\net6.0\Logika.csproj.AssemblyReference.cache
+C:\Users\TheWojwymX\Desktop\Wspolbiezne\Dane\Logika\obj\Debug\net6.0\Logika.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\TheWojwymX\Desktop\Wspolbiezne\Dane\Logika\obj\Debug\net6.0\Logika.AssemblyInfoInputs.cache
+C:\Users\TheWojwymX\Desktop\Wspolbiezne\Dane\Logika\obj\Debug\net6.0\Logika.AssemblyInfo.cs
+C:\Users\TheWojwymX\Desktop\Wspolbiezne\Dane\Logika\obj\Debug\net6.0\Logika.csproj.CoreCompileInputs.cache
+C:\Users\TheWojwymX\Desktop\Wspolbiezne\Dane\Logika\obj\Debug\net6.0\Logika.csproj.CopyComplete
+C:\Users\TheWojwymX\Desktop\Wspolbiezne\Dane\Logika\obj\Debug\net6.0\Logika.dll
+C:\Users\TheWojwymX\Desktop\Wspolbiezne\Dane\Logika\obj\Debug\net6.0\refint\Logika.dll
+C:\Users\TheWojwymX\Desktop\Wspolbiezne\Dane\Logika\obj\Debug\net6.0\Logika.pdb
+C:\Users\TheWojwymX\Desktop\Wspolbiezne\Dane\Logika\obj\Debug\net6.0\ref\Logika.dll

@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="Prezentacja.View.KuleViewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Prezentacja.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Button x:Name="AddBalls" Content="Dodaj Kule" Margin="616,75,31,315" Click="Button_Click"/>
+        <TextBox x:Name="NumberBalls" TextWrapping="Wrap" Text="Ilość kul" Margin="616,10,31,380" TextChanged="TextBox_TextChanged"/>
+        <Canvas x:Name="BallPool" Margin="10,10,207,10"/>
+        <Rectangle Stroke="Black" Margin="10,10,207,10"/>
+
+    </Grid>
+</UserControl>
