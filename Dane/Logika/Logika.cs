@@ -49,10 +49,10 @@ namespace Logika
             int x = _basen.getBall(i).XAxis;
             int y = _basen.getBall(i).YAxis;
 
-            for(; ; )
+            while (true)
             {
-                x = x + (int)Math.Round(movePerTick * Math.Cos(_directions[i] * Math.PI / 180.0));
-                y = y - (int)Math.Round(movePerTick * Math.Sin(_directions[i] * Math.PI / 180.0));
+                x += (int)Math.Round(movePerTick * Math.Cos(_directions[i] * Math.PI / 180.0));
+                y -= (int)Math.Round(movePerTick * Math.Sin(_directions[i] * Math.PI / 180.0));
 
                 if(x < _lenght - _radius && x > _radius && y < _width - _radius && y > _radius)
                 {
@@ -72,7 +72,6 @@ namespace Logika
         {
             return new PozycjaKul { XAxis = _basen.getBall(i).XAxis, YAxis = _basen.getBall(i).YAxis };
         }
-
 
         public int GetNumberOfDirections()
         {
