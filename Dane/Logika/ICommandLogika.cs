@@ -11,8 +11,6 @@ namespace Logika
         void Initialize(int length, int width, int ballsNumber, int radius = 10);
         ICommandPozycjaKul GetPozycjaKul(int i);
         int GetNumberOfThreads();
-        int GetMaxDirectionValue();
-        int GetMinDirectionValue();
         int GetNumberOfDirections();
     }
 }

@@ -13,7 +13,6 @@ namespace Prezentacja.ViewModel
     public class ViewModeler : INotifyPropertyChanged
     {
         private string _ballsNumber;
-        int speed = 1;
         int radius = 10;
         DispatcherTimer _timer = new DispatcherTimer();
         ICommandModel model = new Model.Model();
@@ -47,7 +46,7 @@ namespace Prezentacja.ViewModel
                 ball.Background = color;
                 canvas.Children.Add(ball);
                 Canvas.SetLeft(ball, model.GetPozycjaKul(i).XAxis - radius);
-                int x = model.GetPozycjaKul(i).XAxis; ;
+                int x = model.GetPozycjaKul(i).XAxis;
                 double q = (double)ball.GetValue(Canvas.LeftProperty);
                 Canvas.SetTop(ball, model.GetPozycjaKul(i).YAxis - radius);
             }
@@ -63,7 +62,7 @@ namespace Prezentacja.ViewModel
                 int x = model.GetPozycjaKul(i).XAxis;
                 int y = model.GetPozycjaKul(i).YAxis;
                 Canvas.SetLeft(canvas.Children[i], x - radius);
-                Canvas.SetRight(canvas.Children[i], y - radius);
+                Canvas.SetTop(canvas.Children[i], y - radius);
             }
         }
 
@@ -84,8 +83,6 @@ namespace Prezentacja.ViewModel
             }
 
         }
-
-
 
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyName = null) 

@@ -13,7 +13,7 @@ namespace Logika
         int _width;
         int _radius;
         int _ballsNumber;
-        int movePerTick = 2;
+        int movePerTick = 8;
 
         List<int> _directions = new List<int>(); //Kierunek reprezentowany przez kąt <0,2pi>
         List<Thread> _threads = new List<Thread>(); //Wątki do każdej ruchomej kulki
@@ -27,11 +27,11 @@ namespace Logika
             _radius = radius;
             _ballsNumber = ballsNumber;
 
-            Random random = new Random();
             for (int i = 0; i < _ballsNumber; i++)
             {
+                Random random = new Random();
                 _basen.createBall(random.Next(_lenght - 2 * _radius) + _radius,
-                    random.Next(_width - 2 * _radius) + _radius, _radius); //Gwarancja, że kulka znajdzie się w Canvas
+                random.Next(_width - 2 * _radius) + _radius, _radius); //Gwarancja, że kulka znajdzie się w Canvas
                 _directions.Add(random.Next(360));
                 _threads.Add(new Thread(new ParameterizedThreadStart(MoveBall)));
             }
@@ -51,14 +51,14 @@ namespace Logika
 
             while (true)
             {
-                x += (int)Math.Round(movePerTick * Math.Cos(_directions[i] * Math.PI / 180.0));
-                y -= (int)Math.Round(movePerTick * Math.Sin(_directions[i] * Math.PI / 180.0));
+                x += (int)(movePerTick * Math.Cos(_directions[i] * Math.PI / 180.0));
+                y -= (int)(movePerTick * Math.Sin(_directions[i] * Math.PI / 180.0));
 
                 if(x < _lenght - _radius && x > _radius && y < _width - _radius && y > _radius)
                 {
                     _basen.getBall(i).XAxis = x;
                     _basen.getBall(i).YAxis = y;
-                    Thread.Sleep(1);
+                    Thread.Sleep(10);
                 }
                 else
                 { 
@@ -82,16 +82,6 @@ namespace Logika
         {
             return (int)_threads.Count;
         }
-
-        public int GetMaxDirectionValue()
-        {
-            return _directions.Max();
-        }
-        public int GetMinDirectionValue()
-        {
-            return _directions.Min();
-        }
-
 
     }
 }
