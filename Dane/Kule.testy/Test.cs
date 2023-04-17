@@ -36,17 +36,6 @@ namespace Kule.testy
         }
 
         [TestMethod]
-        public void PoprawnoscDanych()
-        {
-            ICommandLogika logika = new Logika.Logika();
-            logika.Initialize(800, 600, 5, 10);
-            for (int i = 0; i < logika.GetNumberOfDirections(); i++)
-            {
-                Assert.IsTrue(logika.get)
-            }
-        }
-
-        [TestMethod]
         public void InitializeTest()
         {
             ICommandLogika logika = new Logika.Logika();
