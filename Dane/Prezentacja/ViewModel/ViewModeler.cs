@@ -12,7 +12,7 @@ namespace Prezentacja.ViewModel
 {
     public class ViewModeler : INotifyPropertyChanged
     {
-        private string _ballsNumber;
+        private string ballNumberString;
         int radius = 10;
         DispatcherTimer _timer = new DispatcherTimer();
         ICommandModel model = new Model.Model();
@@ -29,38 +29,40 @@ namespace Prezentacja.ViewModel
         {
             canvas = o as Canvas;
             canvas.Focus();
-            int value = int.Parse(_ballsNumber);
+            int ballNumberFromString = int.Parse(ballNumberString);
 
-            model.ModelInitialize((int)canvas.Width, (int)canvas.Height, value, radius); //Rozmiary Canvas sa domyslnie double
-            for (int i = 0; i < value; i++)
+            model.ModelInitialize((int)canvas.Width, (int)canvas.Height, ballNumberFromString, radius); //Rozmiary Canvas sa domyslnie double
+            canvas.Children.Clear();
+            for (int i = 0; i < model.GetNumberOfBalls(); i++)
             {
                 Random random = new Random();
                 Border ball = new Border();
-                Brush color = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)random.Next(1, 255),
-                  (byte)random.Next(1, 255), (byte)random.Next(1, 233)));
+                Brush color = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)model.GetKolorKul(i)[0],
+                  (byte)model.GetKolorKul(i)[1], (byte)model.GetKolorKul(i)[2]));
 
                 ball.BorderBrush = Brushes.Black;
+                // TODO: add GetRadius to model
                 ball.Height = 2 * radius;
                 ball.Width = 2 * radius;
                 ball.CornerRadius = new CornerRadius(50);
                 ball.Background = color;
                 canvas.Children.Add(ball);
-                Canvas.SetLeft(ball, model.GetPozycjaKul(i).XAxis - radius);
-                int x = model.GetPozycjaKul(i).XAxis;
+                Canvas.SetLeft(ball, model.GetPozycjaKul(i).XPosition - radius);
+                int x = model.GetPozycjaKul(i).XPosition;
                 double q = (double)ball.GetValue(Canvas.LeftProperty);
-                Canvas.SetTop(ball, model.GetPozycjaKul(i).YAxis - radius);
+                Canvas.SetTop(ball, model.GetPozycjaKul(i).YPosition - radius);
             }
             moveBall();
         }
 
         private void TimerEvent(object? sender, EventArgs e)
         {
-            int value = int.Parse(_ballsNumber);
             model.UpdatePozycjaKul();
-            for (int i = 0; i <value; i++)
+            for (int i = 0; i <model.GetNumberOfBalls(); i++)
             {
-                int x = model.GetPozycjaKul(i).XAxis;
-                int y = model.GetPozycjaKul(i).YAxis;
+                int x = model.GetPozycjaKul(i).XPosition;
+                int y = model.GetPozycjaKul(i).YPosition;
+                // TODO: add GetRadius to model
                 Canvas.SetLeft(canvas.Children[i], x - radius);
                 Canvas.SetTop(canvas.Children[i], y - radius);
             }
@@ -75,10 +77,10 @@ namespace Prezentacja.ViewModel
 
         public string BallsNumber
         {
-            get { return _ballsNumber; }
+            get { return ballNumberString; }
             set
             {
-                _ballsNumber = value;
+                ballNumberString = value;
                 OnPropertyChanged(); //po zmianie w modelu zmienia sie dane w widoku
             }
 

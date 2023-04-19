@@ -9,8 +9,11 @@ namespace Logika
     public interface ICommandLogika
     {
         void Initialize(int length, int width, int ballsNumber, int radius = 10);
+
+        void Deinitialize();
         ICommandPozycjaKul GetPozycjaKul(int i);
+        int[] GetKolorKul(int i);
+        int GetNumberOfBalls();
         int GetNumberOfThreads();
-        int GetNumberOfDirections();
     }
 }

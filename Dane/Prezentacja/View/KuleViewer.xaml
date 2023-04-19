@@ -15,7 +15,7 @@
 
     <Grid>
         <Button Content="Dodaj Kule" Margin="280,14,414,467" Command="{Binding ConfirmCommand}" CommandParameter="{Binding ElementName=BallPool}"/>
-        <TextBox x:Name="NumberBalls" TextWrapping="Wrap" Text="{Binding BallsNumber}" Margin="143,14,551,470" />
+        <TextBox x:Name="NumberBalls" TextWrapping="Wrap" Text="{Binding BallsNumber}" Margin="143,14,551,470" PreviewTextInput="NumberValidationTextBox"/>
         <Canvas x:Name="BallPool"  Height="350" Width="600"/>
         <Border BorderBrush="Black" BorderThickness="1" Height="350" Width="600"/>
 

@@ -10,11 +10,11 @@ namespace Dane
     {
         List<ICommandKula> kule = new List<ICommandKula>();
 
-        public void createBall(int XAxis, int YAxis, int Radius)
+        public void createBall(int XPosition, int YPosition, int Radius, int SpeedAngle, int SpeedValue, int[] Color)
         {
-            if (XAxis > 0 && YAxis > 0 && Radius > 0)
+            if (XPosition > 0 && YPosition > 0 && Radius > 0 && 0 <= SpeedAngle && SpeedAngle < 360 && SpeedValue > 0)
             {
-                kule.Add(new Kula { XAxis = XAxis, YAxis = YAxis, Radius = Radius });
+                kule.Add(new Kula(XPosition, YPosition, Radius, SpeedAngle, SpeedValue, Color));
             }
             else
             {
@@ -22,10 +22,10 @@ namespace Dane
             }
         }
 
-        public void updateBall(int i, int XAxis, int YAxis)
+        public void updateBall(int i, int XPosition, int YPosition)
         {
-            kule[i].XAxis = XAxis;
-            kule[i].YAxis = YAxis;
+            kule[i].XPosition = XPosition;
+            kule[i].YPosition = YPosition;
         }
 
         public ICommandKula getBall(int i)
@@ -45,5 +45,8 @@ namespace Dane
             return this.kule.Count;
         }
 
+        void ICommandBasen.deleteBall(int i) { this.kule.RemoveAt(i);}
+
+        void ICommandBasen.clean() { this.kule.Clear(); }
     }
 }

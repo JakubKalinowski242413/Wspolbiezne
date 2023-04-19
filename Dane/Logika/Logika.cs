@@ -12,71 +12,87 @@ namespace Logika
         int _lenght;
         int _width;
         int _radius;
-        int _ballsNumber;
-        int movePerTick = 8;
 
-        List<int> _directions = new List<int>(); //Kierunek reprezentowany przez kąt <0,2pi>
         List<Thread> _threads = new List<Thread>(); //Wątki do każdej ruchomej kulki
 
-        ICommandBasen _basen = new Dane.Basen(); 
+        ICommandBasen _basen = new Dane.Basen();
 
         public void Initialize(int length, int width, int ballsNumber, int radius = 10)
         {
             _lenght = length;
             _width = width;
             _radius = radius;
-            _ballsNumber = ballsNumber;
 
-            for (int i = 0; i < _ballsNumber; i++)
+            for (int i = 0; i < ballsNumber; i++)
             {
                 Random random = new Random();
-                _basen.createBall(random.Next(_lenght - 2 * _radius) + _radius,
-                random.Next(_width - 2 * _radius) + _radius, _radius); //Gwarancja, że kulka znajdzie się w Canvas
-                _directions.Add(random.Next(360));
+                _basen.createBall(random.Next(_lenght - 2 * _radius) + _radius, // X
+                random.Next(_width - 2 * _radius) + _radius, // Y Gwarancja, że kulka znajdzie się w Canvas 
+                _radius + random.Next(10), // R
+                random.Next(360), // Dir
+                3 + random.Next(7), // Vel
+                new int[] { random.Next(255), random.Next(255), random.Next(255) });
                 _threads.Add(new Thread(new ParameterizedThreadStart(MoveBall)));
             }
 
-            for (int i = 0; i < _ballsNumber; i++)
+
+
+            for (int i = 0; i < _basen.getBallCount(); i++)
             {
                 _threads[i].Start(i);
             }
 
         }
 
+        public void Deinitialize()
+        {
+            for (int i = 0; i < _basen.getBallCount(); i++)
+            {
+                _threads[i].Interrupt();
+            }
+            _threads.Clear();
+            _basen.clean();
+        }
         private void MoveBall(object n)
         {
             int i = (int)n;
-            int x = _basen.getBall(i).XAxis;
-            int y = _basen.getBall(i).YAxis;
+            int x = _basen.getBall(i).XPosition;
+            int y = _basen.getBall(i).YPosition;
 
             while (true)
             {
-                x += (int)(movePerTick * Math.Cos(_directions[i] * Math.PI / 180.0));
-                y -= (int)(movePerTick * Math.Sin(_directions[i] * Math.PI / 180.0));
+                x += (int)(_basen.getBall(i).SpeedValue * Math.Cos(_basen.getBall(i).SpeedAngle * Math.PI / 180.0));
+                y -= (int)(_basen.getBall(i).SpeedValue * Math.Sin(_basen.getBall(i).SpeedAngle * Math.PI / 180.0));
 
-                if(x < _lenght - _radius && x > _radius && y < _width - _radius && y > _radius)
+                // TODO: wall collision detection
+                if (x < _lenght - _radius && x > _radius && y < _width - _radius && y > _radius)
                 {
-                    _basen.getBall(i).XAxis = x;
-                    _basen.getBall(i).YAxis = y;
+                    _basen.getBall(i).XPosition = x;
+                    _basen.getBall(i).YPosition = y;
                     Thread.Sleep(10);
                 }
                 else
-                { 
+                {
                     break;
-                }    
+                }
 
             }
         }
 
         public ICommandPozycjaKul GetPozycjaKul(int i)
         {
-            return new PozycjaKul { XAxis = _basen.getBall(i).XAxis, YAxis = _basen.getBall(i).YAxis };
+            return new PozycjaKul { XPosition = _basen.getBall(i).XPosition, YPosition = _basen.getBall(i).YPosition };
         }
 
-        public int GetNumberOfDirections()
-        {
-            return _directions.Count;
+        public int[] GetKolorKul(int i){
+            return _basen.getBall(i).CurrentColor;
         }
+
+        public int GetNumberOfBalls()
+        {
+            return _basen.getBallCount();
+        }
+
 
         public int GetNumberOfThreads()
         {

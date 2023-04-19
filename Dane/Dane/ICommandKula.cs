@@ -8,9 +8,12 @@ namespace Dane
 {
     public interface ICommandKula
     {
-        int XAxis { get; set; }
-        int YAxis { get; set; }
+        int XPosition { get; set; }
+        int YPosition { get; set; }
         int Radius { get; set; }
+        int SpeedAngle { get; set; }
+        int SpeedValue { get; set; }
+        int[] BaseColor { get; set; }
+        int[] CurrentColor { get; set; }
     }
-
 }
