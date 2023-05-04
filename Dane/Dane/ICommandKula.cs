@@ -11,7 +11,8 @@ namespace Dane
         int XPosition { get; set; }
         int YPosition { get; set; }
         int Radius { get; set; }
-        int SpeedAngle { get; set; }
+        int Mass { get; }
+        int Angle { get; set; }
         int SpeedValue { get; set; }
         int[] BaseColor { get; set; }
         int[] CurrentColor { get; set; }

@@ -9,13 +9,12 @@ namespace Logika
 {
     public class Logika : ICommandLogika
     {
-        int _lenght;
-        int _width;
-        int _radius;
+        static int _lenght;
+        static int _width;
+        static int _radius;
 
-        List<Thread> _threads = new List<Thread>(); //Wątki do każdej ruchomej kulki
-
-        ICommandBasen _basen = new Dane.Basen();
+        List<Task> _tasks = new List<Task>();
+        static ICommandBasen _basen = new Dane.Basen();
 
         public void Initialize(int length, int width, int ballsNumber, int radius = 10)
         {
@@ -32,51 +31,114 @@ namespace Logika
                 random.Next(360), // Dir
                 3 + random.Next(7), // Vel
                 new int[] { random.Next(255), random.Next(255), random.Next(255) });
-                _threads.Add(new Thread(new ParameterizedThreadStart(MoveBall)));
+                _tasks.Add(new Task(moveBall, i));
             }
 
-
-
-            for (int i = 0; i < _basen.getBallCount(); i++)
+            for (int i = 0; i < ballsNumber; i++)
             {
-                _threads[i].Start(i);
+                _tasks[i].Start();
             }
-
         }
 
         public void Deinitialize()
         {
             for (int i = 0; i < _basen.getBallCount(); i++)
             {
-                _threads[i].Interrupt();
+                _tasks[i].Wait();
             }
-            _threads.Clear();
+            _tasks.Clear();
             _basen.clean();
         }
-        private void MoveBall(object n)
+
+        Action<object> moveBall = (object i) =>
         {
-            int i = (int)n;
-            int x = _basen.getBall(i).XPosition;
-            int y = _basen.getBall(i).YPosition;
+            int iterator = (int)i;
+            int x = _basen.getBall(iterator).XPosition;
+            int y = _basen.getBall(iterator).YPosition;
 
             while (true)
             {
-                x += (int)(_basen.getBall(i).SpeedValue * Math.Cos(_basen.getBall(i).SpeedAngle * Math.PI / 180.0));
-                y -= (int)(_basen.getBall(i).SpeedValue * Math.Sin(_basen.getBall(i).SpeedAngle * Math.PI / 180.0));
+                checkWallCollision(iterator, _lenght, _width);
+                x += (int)Math.Round(_basen.getBall(iterator).SpeedValue * Math.Cos(_basen.getBall(iterator).Angle * Math.PI / 180.0));
+                y -= (int)Math.Round(_basen.getBall(iterator).SpeedValue * Math.Sin(_basen.getBall(iterator).Angle * Math.PI / 180.0));
 
                 // TODO: wall collision detection
                 if (x < _lenght - _radius && x > _radius && y < _width - _radius && y > _radius)
                 {
-                    _basen.getBall(i).XPosition = x;
-                    _basen.getBall(i).YPosition = y;
+                    _basen.getBall(iterator).XPosition = x;
+                    _basen.getBall(iterator).YPosition = y;
                     Thread.Sleep(10);
                 }
-                else
+                   else
                 {
                     break;
                 }
 
             }
+        };
+
+        static int checkBallsCollision(int i)
+        {
+            ICommandKula ja = _basen.getBall(i);
+            int x = ja.XPosition;
+            int y = ja.YPosition;
+
+            for (int j = 0; j < _basen.getBallCount(); j++)
+            {
+                if(i != j)
+                {
+                    int comparedX = _basen.getBall(j).XPosition;
+                    int comparedY = _basen.getBall(j).YPosition;
+                    int euclideanDistance = (int)Math.Round(Math.Sqrt((x - comparedX) * (x - comparedX) + (y - comparedY) * (y-comparedY)));
+                    if (euclideanDistance <= ja.Radius + _basen.getBall(j).Radius)
+                    {
+                        return j;
+                    }
+                }
+            }
+            return -1;
+        }
+
+        static void checkWallCollision(int i, int length, int width)
+        {
+            ICommandKula ja = _basen.getBall(i);
+            int x = ja.XPosition;
+            int y = ja.YPosition;
+
+            //Top and Bottom wall
+            if (y < ja.Radius || y > width - ja.Radius)
+            {
+                ja.Angle = 360 - ja.Angle;
+                if (y < ja.Radius)
+                {
+                    ja.YPosition = ja.Radius;
+                }
+                else
+                {
+                    ja.YPosition = width - ja.Radius;
+                }
+            }
+
+            //Left and Right wall
+            if (x < ja.Radius || x > length - ja.Radius)
+            {
+                if (ja.Angle <= 180)
+                {
+                    ja.Angle = 180 - ja.Angle;
+                }
+                else
+                {
+                    ja.Angle = 540 - ja.Angle;
+                }
+                if (x < ja.Radius)
+                {
+                    ja.XPosition = ja.Radius;
+                }
+                else
+                {
+                    ja.XPosition = length - ja.Radius;
+                }
+            }    
         }
 
         public ICommandPozycjaKul GetPozycjaKul(int i)
@@ -93,11 +155,9 @@ namespace Logika
             return _basen.getBallCount();
         }
 
-
         public int GetNumberOfThreads()
         {
-            return (int)_threads.Count;
+            return (int)_tasks.Count;
         }
-
     }
 }
