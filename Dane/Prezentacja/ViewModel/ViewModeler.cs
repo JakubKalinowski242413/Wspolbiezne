@@ -12,7 +12,7 @@ namespace Prezentacja.ViewModel
 {
     public class ViewModeler : INotifyPropertyChanged
     {
-        private string ballNumberString;
+        private string ballNumberString = "3";
         int radius = 10;
         DispatcherTimer _timer = new DispatcherTimer();
         ICommandModel model = new Model.Model();

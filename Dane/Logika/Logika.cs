@@ -28,23 +28,24 @@ namespace Logika
                 _basen.createBall(random.Next(_lenght - 2 * _radius) + _radius, // X
                 random.Next(_width - 2 * _radius) + _radius, // Y Gwarancja, że kulka znajdzie się w Canvas 
                 _radius + random.Next(10), // R
-                random.Next(360), // Dir
-                3 + random.Next(7), // Vel
+                random.Next(5)+3, // XSpeed
+                random.Next(5) + 3, // YSpeed
                 new int[] { random.Next(255), random.Next(255), random.Next(255) });
-                _tasks.Add(new Task(moveBall, i));
+                _tasks.Add(new Task(action: moveBall, i));
             }
 
-            for (int i = 0; i < ballsNumber; i++)
+            foreach(Task task in _tasks)
             {
-                _tasks[i].Start();
+                task.Start();
             }
         }
 
         public void Deinitialize()
         {
-            for (int i = 0; i < _basen.getBallCount(); i++)
+            // TODO: proper task cancelation
+            foreach (Task task in _tasks)
             {
-                _tasks[i].Wait();
+                task.Wait();
             }
             _tasks.Clear();
             _basen.clean();
@@ -59,20 +60,12 @@ namespace Logika
             while (true)
             {
                 checkWallCollision(iterator, _lenght, _width);
-                x += (int)Math.Round(_basen.getBall(iterator).SpeedValue * Math.Cos(_basen.getBall(iterator).Angle * Math.PI / 180.0));
-                y -= (int)Math.Round(_basen.getBall(iterator).SpeedValue * Math.Sin(_basen.getBall(iterator).Angle * Math.PI / 180.0));
+                x += _basen.getBall(iterator).XSpeed;
+                y += _basen.getBall(iterator).YSpeed;
 
-                // TODO: wall collision detection
-                if (x < _lenght - _radius && x > _radius && y < _width - _radius && y > _radius)
-                {
-                    _basen.getBall(iterator).XPosition = x;
-                    _basen.getBall(iterator).YPosition = y;
-                    Thread.Sleep(10);
-                }
-                   else
-                {
-                    break;
-                }
+                _basen.getBall(iterator).XPosition = x;
+                _basen.getBall(iterator).YPosition = y;
+                Thread.Sleep(10);
 
             }
         };
@@ -105,39 +98,28 @@ namespace Logika
             int x = ja.XPosition;
             int y = ja.YPosition;
 
-            //Top and Bottom wall
-            if (y < ja.Radius || y > width - ja.Radius)
+            //Top and Bottom wall          
+            if (y < ja.Radius)
             {
-                ja.Angle = 360 - ja.Angle;
-                if (y < ja.Radius)
-                {
-                    ja.YPosition = ja.Radius;
-                }
-                else
-                {
-                    ja.YPosition = width - ja.Radius;
-                }
+                ja.YSpeed = Math.Abs(ja.YSpeed);
+                ja.YPosition = ja.Radius;
             }
-
-            //Left and Right wall
-            if (x < ja.Radius || x > length - ja.Radius)
+            if(y > width-ja.Radius)
             {
-                if (ja.Angle <= 180)
-                {
-                    ja.Angle = 180 - ja.Angle;
-                }
-                else
-                {
-                    ja.Angle = 540 - ja.Angle;
-                }
-                if (x < ja.Radius)
-                {
-                    ja.XPosition = ja.Radius;
-                }
-                else
-                {
-                    ja.XPosition = length - ja.Radius;
-                }
+                ja.YSpeed = -Math.Abs(ja.YSpeed);
+                ja.YPosition = width - ja.Radius;
+            }
+            
+            //Left and Right wall
+            if (x < ja.Radius)
+            {
+                ja.XSpeed = Math.Abs(ja.XSpeed);
+                ja.XPosition = ja.Radius;
+            }
+            if (x > length - ja.Radius)
+            {
+                ja.XSpeed = -Math.Abs(ja.XSpeed);
+                ja.XPosition = width - ja.Radius;
             }    
         }
 
