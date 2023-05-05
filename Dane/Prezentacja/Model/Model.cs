@@ -11,6 +11,7 @@ namespace Prezentacja.Model
     {
         List<ICommandPozycjaKul> pozycjeKul = new List<ICommandPozycjaKul>();
         List<int[]> koloryKul = new List<int[]>();
+        List<int> radii = new List<int>();
         ICommandLogika logika = new Logika.Logika();
         
         public void ModelInitialize(int length, int width, int ballsNumber, int radius = 10)
@@ -30,6 +31,7 @@ namespace Prezentacja.Model
             {
                 pozycjeKul.Add(logika.GetPozycjaKul(i));
                 koloryKul.Add(logika.GetKolorKul(i));
+                radii.Add(logika.GetRadius(i));
             }
         }
 
@@ -46,6 +48,11 @@ namespace Prezentacja.Model
         public int[] GetKolorKul(int i)
         {
             return koloryKul[i];
+        }
+
+        public int GetRadius(int i)
+        {
+            return radii[i];
         }
 
         public void UpdatePozycjaKul()

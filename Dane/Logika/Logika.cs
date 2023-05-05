@@ -15,6 +15,7 @@ namespace Logika
         static int _radius;
         static List<bool> isLocked = new List<bool>();
 
+        List<int> radii = new List<int>();
         List<Task> _tasks = new List<Task>();
         static ICommandBasen _basen = new Dane.Basen();
 
@@ -27,14 +28,15 @@ namespace Logika
             for (int i = 0; i < ballsNumber; i++)
             {
                 Random random = new Random();
+                radii.Add(_radius + random.Next(10));
                 _basen.createBall(random.Next(_lenght - 2 * _radius) + _radius, // X
                 random.Next(_width - 2 * _radius) + _radius, // Y Gwarancja, że kulka znajdzie się w Canvas 
-                _radius + random.Next(10), // R
+                radii[i], // R
                 random.Next(2) + 3, // XSpeed
                 random.Next(2) + 3, // YSpeed
                 new int[] { random.Next(255), random.Next(255), random.Next(255) });
                 isLocked.Add(false);
-                _tasks.Add(new Task(action: moveBall, i));
+                _tasks.Add(new Task(moveBall, i));
             }
 
             foreach(Task task in _tasks)
@@ -57,14 +59,14 @@ namespace Logika
         Action<object> moveBall = (object i) =>
         {
             int iterator = (int)i;
-            int x = _basen.getBall(iterator).XPosition;
-            int y = _basen.getBall(iterator).YPosition;
+            double x = _basen.getBall(iterator).XPosition;
+            double y = _basen.getBall(iterator).YPosition;
 
             while (true)
             {   
                 if (isLocked[iterator])
                 {
-                    Thread.Sleep(15);
+                    Thread.Sleep(1);
                     continue;
                 }
                 int collisionIterator = checkBallsCollision(iterator);
@@ -76,43 +78,25 @@ namespace Logika
                         isLocked[collisionIterator] = true;
                     }    
 
-                    int collisionX = _basen.getBall(collisionIterator).XPosition;
-                    int collisionY = _basen.getBall(collisionIterator).YPosition;
-                    double collisionAngle = 0;
-
-                    if (collisionX != x)
-                    {
-                        collisionAngle = (int)Math.Round((double)(y - collisionY) / (double)(collisionX - x));
-                    }
-                    else
-                    {
-                        collisionAngle = (y > collisionY) ? Math.PI / 2 : -Math.PI / 2;
-                    }
-
-                    if (collisionX < x)
-                    {
-                        collisionAngle = Math.PI + collisionAngle;
-                    }
-                    if (collisionAngle < 0)
-                    {
-                        collisionAngle = 2 * Math.PI + collisionAngle;
-                    }
+                    double collisionX = _basen.getBall(collisionIterator).XPosition;
+                    double collisionY = _basen.getBall(collisionIterator).YPosition;
+                    double collisionAngle = Math.Atan2(collisionY - y, collisionX - x);
 
                     // Mass of the balls
                     int m1 = _basen.getBall(iterator).Mass;
                     int m2 = _basen.getBall(collisionIterator).Mass;
 
                     // Speeds before collision
-                    int vx1 = _basen.getBall(iterator).XSpeed;
-                    int vy1 = _basen.getBall(iterator).YSpeed;
-                    int vx2 = _basen.getBall(collisionIterator).XSpeed;
-                    int vy2 = _basen.getBall(collisionIterator).YSpeed;
+                    double vx1 = _basen.getBall(iterator).XSpeed;
+                    double vy1 = _basen.getBall(iterator).YSpeed;
+                    double vx2 = _basen.getBall(collisionIterator).XSpeed;
+                    double vy2 = _basen.getBall(collisionIterator).YSpeed;
 
                     // Speed after collision
-                    int vx1_new = (int)(((m1 - m2) * vx1 + 2 * m2 * vx2) / (m1 + m2) * Math.Cos(collisionAngle) + vy1 * Math.Sin(collisionAngle));
-                    int vy1_new = (int)(((m1 - m2) * vy1 + 2 * m2 * vy2) / (m1 + m2) * Math.Cos(collisionAngle) - vx1 * Math.Sin(collisionAngle));
-                    int vx2_new = (int)(((m2 - m1) * vx2 + 2 * m1 * vx1) / (m1 + m2) * Math.Cos(collisionAngle) + vy2 * Math.Sin(collisionAngle));
-                    int vy2_new = (int)(((m2 - m1) * vy2 + 2 * m1 * vy1) / (m1 + m2) * Math.Cos(collisionAngle) - vx2 * Math.Sin(collisionAngle));
+                    double vx1_new = (((m1 - m2) * vx1 + 2 * m2 * vx2) * Math.Cos(collisionAngle) / (m1 + m2) + vy1 * Math.Sin(collisionAngle));
+                    double vy1_new = (((m1 - m2) * vy1 + 2 * m2 * vy2) * Math.Cos(collisionAngle) / (m1 + m2) - vx1 * Math.Sin(collisionAngle));
+                    double vx2_new = (((m2 - m1) * vx2 + 2 * m1 * vx1) * Math.Cos(collisionAngle) / (m1 + m2) + vy2 * Math.Sin(collisionAngle));
+                    double vy2_new = (((m2 - m1) * vy2 + 2 * m1 * vy1) * Math.Cos(collisionAngle) / (m1 + m2) - vx2 * Math.Sin(collisionAngle));
 
                     //Set values
                     _basen.getBall(iterator).XSpeed = vx1_new;
@@ -124,7 +108,6 @@ namespace Logika
 
                 x += _basen.getBall(iterator).XSpeed;
                 y += _basen.getBall(iterator).YSpeed;
-
                 _basen.getBall(iterator).XPosition = x;
                 _basen.getBall(iterator).YPosition = y;
 
@@ -142,16 +125,16 @@ namespace Logika
         static int checkBallsCollision(int i)
         {
             ICommandKula ja = _basen.getBall(i);
-            int x = ja.XPosition;
-            int y = ja.YPosition;
+            double x = ja.XPosition;
+            double y = ja.YPosition;
 
             for (int j = 0; j < _basen.getBallCount(); j++)
             {
                 if(i != j)
                 {
-                    int comparedX = _basen.getBall(j).XPosition;
-                    int comparedY = _basen.getBall(j).YPosition;
-                    int euclideanDistance = (int)Math.Round(Math.Sqrt((x - comparedX) * (x - comparedX) + (y - comparedY) * (y-comparedY)));
+                    double comparedX = _basen.getBall(j).XPosition;
+                    double comparedY = _basen.getBall(j).YPosition;
+                    double euclideanDistance = Math.Sqrt((x - comparedX) * (x - comparedX) + (y - comparedY) * (y-comparedY));
                     if (euclideanDistance <= ja.Radius + _basen.getBall(j).Radius)
                     {
                         return j;
@@ -164,8 +147,8 @@ namespace Logika
         static void checkWallCollision(int i, int length, int width)
         {
             ICommandKula ja = _basen.getBall(i);
-            int x = ja.XPosition;
-            int y = ja.YPosition;
+            double x = ja.XPosition;
+            double y = ja.YPosition;
             int radius = ja.Radius;
 
             //Top and Bottom wall          
@@ -197,9 +180,15 @@ namespace Logika
         {
             return new PozycjaKul { XPosition = _basen.getBall(i).XPosition, YPosition = _basen.getBall(i).YPosition };
         }
-
-        public int[] GetKolorKul(int i){
+        
+        public int[] GetKolorKul(int i)
+        {
             return _basen.getBall(i).CurrentColor;
+        }
+
+        public int GetRadius(int i)
+        {
+            return radii[i];
         }
 
         public int GetNumberOfBalls()

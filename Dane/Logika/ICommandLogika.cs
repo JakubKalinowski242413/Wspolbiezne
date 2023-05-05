@@ -14,6 +14,7 @@ namespace Logika
         ICommandPozycjaKul GetPozycjaKul(int i);
         int[] GetKolorKul(int i);
         int GetNumberOfBalls();
+        int GetRadius(int i);
         int GetNumberOfThreads();
     }
 }

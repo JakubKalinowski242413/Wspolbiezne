@@ -9,24 +9,24 @@ namespace Dane
 {
     public class Kula : ICommandKula
     {
-        int _XPosition;
-        int _YPosition;
+        double _XPosition;
+        double _YPosition;
         int _Radius;
-        int _XSpeed;
-        int _YSpeed;
+        double _XSpeed;
+        double _YSpeed;
         int[] _BaseColor;
         int[] _CurrentColor;
 
-        public int XPosition { get => _XPosition; set { lock(this) { _XPosition = value; } } }
-        public int YPosition { get => _YPosition; set { lock (this) { _YPosition = value; } } }
+        public double XPosition { get => _XPosition; set { lock(this) { _XPosition = value; } } }
+        public double YPosition { get => _YPosition; set { lock (this) { _YPosition = value; } } }
         public int Radius { get => _Radius; set => _Radius = value; }
         public int Mass { get => _Radius * _Radius; }
-        public int XSpeed { get => _XSpeed; set => _XSpeed = value; }
-        public int YSpeed { get => _YSpeed; set => _YSpeed = value; }
+        public double XSpeed { get => _XSpeed; set => _XSpeed = value; }
+        public double YSpeed { get => _YSpeed; set => _YSpeed = value; }
         public int[] BaseColor { get => _BaseColor; set => _BaseColor = value; }
         public int[] CurrentColor { get => _CurrentColor; set => _CurrentColor = value; }
 
-        public Kula(int xPosition, int yPosition, int radius, int xSpeed, int ySpeed, int[] baseColor)
+        public Kula(double xPosition, double yPosition, int radius, double xSpeed, double ySpeed, int[] baseColor)
         {
             XPosition = xPosition;
             YPosition = yPosition;

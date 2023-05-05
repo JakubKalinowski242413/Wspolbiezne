@@ -8,7 +8,7 @@ namespace Logika
 {
     public interface ICommandPozycjaKul
     {
-        int XPosition { get; set; }
-        int YPosition { get; set; }
+        double XPosition { get; set; }
+        double YPosition { get; set; }
     }
 }

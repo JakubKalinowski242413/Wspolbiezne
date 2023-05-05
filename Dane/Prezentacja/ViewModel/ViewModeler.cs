@@ -42,13 +42,13 @@ namespace Prezentacja.ViewModel
 
                 ball.BorderBrush = Brushes.Black;
                 // TODO: add GetRadius to model
-                ball.Height = 2 * radius;
-                ball.Width = 2 * radius;
+                ball.Height = 2 * model.GetRadius(i);
+                ball.Width = 2 * model.GetRadius(i);
                 ball.CornerRadius = new CornerRadius(50);
                 ball.Background = color;
                 canvas.Children.Add(ball);
                 Canvas.SetLeft(ball, model.GetPozycjaKul(i).XPosition - radius);
-                int x = model.GetPozycjaKul(i).XPosition;
+                double x = model.GetPozycjaKul(i).XPosition;
                 double q = (double)ball.GetValue(Canvas.LeftProperty);
                 Canvas.SetTop(ball, model.GetPozycjaKul(i).YPosition - radius);
             }
@@ -60,8 +60,8 @@ namespace Prezentacja.ViewModel
             model.UpdatePozycjaKul();
             for (int i = 0; i <model.GetNumberOfBalls(); i++)
             {
-                int x = model.GetPozycjaKul(i).XPosition;
-                int y = model.GetPozycjaKul(i).YPosition;
+                double x = model.GetPozycjaKul(i).XPosition;
+                double y = model.GetPozycjaKul(i).YPosition;
                 // TODO: add GetRadius to model
                 Canvas.SetLeft(canvas.Children[i], x - radius);
                 Canvas.SetTop(canvas.Children[i], y - radius);

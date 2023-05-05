@@ -13,6 +13,7 @@ namespace Prezentacja.Model
         int GetNumberOfBalls();
         ICommandPozycjaKul GetPozycjaKul(int i);
         int[] GetKolorKul(int i);
+        int GetRadius(int i);
         void UpdatePozycjaKul();
     }
 }

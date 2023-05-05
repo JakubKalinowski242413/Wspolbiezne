@@ -8,10 +8,10 @@ namespace Logika
 {
     internal class PozycjaKul : ICommandPozycjaKul
     {
-        int _XPosition;
-        int _YPosition;
+        double _XPosition;
+        double _YPosition;
 
-        public int XPosition { get => _XPosition; set => _XPosition = value; }
-        public int YPosition { get => _YPosition; set => _YPosition = value; }
+        public double XPosition { get => _XPosition; set => _XPosition = value; }
+        public double YPosition { get => _YPosition; set => _YPosition = value; }
     }
 }
