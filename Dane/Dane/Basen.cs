@@ -10,11 +10,11 @@ namespace Dane
     {
         List<ICommandKula> kule = new List<ICommandKula>();
 
-        public void createBall(int XPosition, int YPosition, int Radius, int SpeedAngle, int SpeedValue, int[] Color)
+        public void createBall(int XPosition, int YPosition, int Radius, int XSpeed, int YSpeed, int[] Color)
         {
-            if (XPosition > 0 && YPosition > 0 && Radius > 0 && 0 <= SpeedAngle && SpeedAngle < 360 && SpeedValue > 0)
+            if (XPosition - Radius >= 0 && YPosition - Radius >= 0 && Radius > 0)
             {
-                kule.Add(new Kula(XPosition, YPosition, Radius, SpeedAngle, SpeedValue, Color));
+                kule.Add(new Kula(XPosition, YPosition, Radius, XSpeed, YSpeed, Color));
             }
             else
             {
