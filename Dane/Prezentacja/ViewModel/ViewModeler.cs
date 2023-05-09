@@ -71,7 +71,7 @@ namespace Prezentacja.ViewModel
         private void moveBall()
         {
             _timer.Tick += TimerEvent;
-            _timer.Interval = TimeSpan.FromMilliseconds(15);
+            _timer.Interval = TimeSpan.FromMilliseconds(10);
             _timer.Start();
         }
 

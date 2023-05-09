@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace Prezentacja.Model
 {
@@ -34,6 +36,7 @@ namespace Prezentacja.Model
                 radii.Add(logika.GetRadius(i));
             }
         }
+
 
         public int GetNumberOfBalls()
         {

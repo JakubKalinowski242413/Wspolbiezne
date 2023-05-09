@@ -1,5 +1,6 @@
 ﻿using Dane;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Intrinsics;
@@ -14,6 +15,7 @@ namespace Logika
         static int _width;
         static int _radius;
         static List<bool> isLocked = new List<bool>();
+        static bool stopProgram = false;
 
         List<int> radii = new List<int>();
         List<Task> _tasks = new List<Task>();
@@ -24,6 +26,7 @@ namespace Logika
             _lenght = length;
             _width = width;
             _radius = radius;
+            stopProgram = false;
 
             for (int i = 0; i < ballsNumber; i++)
             {
@@ -47,7 +50,7 @@ namespace Logika
 
         public void Deinitialize()
         {
-            // TODO: proper task cancelation
+            stopProgram = true;
             foreach (Task task in _tasks)
             {
                 task.Wait();
@@ -62,11 +65,10 @@ namespace Logika
             double x = _basen.getBall(iterator).XPosition;
             double y = _basen.getBall(iterator).YPosition;
 
-            while (true)
+            while (!stopProgram)
             {   
                 if (isLocked[iterator])
                 {
-                    Thread.Sleep(1);
                     continue;
                 }
                 int collisionIterator = checkBallsCollision(iterator);
@@ -98,11 +100,14 @@ namespace Logika
                     double vx2_new = (((m2 - m1) * vx2 + 2 * m1 * vx1) * Math.Cos(collisionAngle) / (m1 + m2) + vy2 * Math.Sin(collisionAngle));
                     double vy2_new = (((m2 - m1) * vy2 + 2 * m1 * vy1) * Math.Cos(collisionAngle) / (m1 + m2) - vx2 * Math.Sin(collisionAngle));
 
-                    //Set values
+                    //Set values of speed
                     _basen.getBall(iterator).XSpeed = vx1_new;
                     _basen.getBall(iterator).YSpeed = vy1_new;
                     _basen.getBall(collisionIterator).XSpeed = vx2_new;
                     _basen.getBall(collisionIterator).YSpeed = vy2_new;
+
+                    //Set positions after collision
+
                 }
                 checkWallCollision(iterator, _lenght, _width);
 
@@ -118,10 +123,10 @@ namespace Logika
                         isLocked[collisionIterator] = false;
                     }    
                 }
-                Thread.Sleep(15);
+                Thread.Sleep(10);
             }
         };
-
+    
         static int checkBallsCollision(int i)
         {
             ICommandKula ja = _basen.getBall(i);
@@ -135,7 +140,7 @@ namespace Logika
                     double comparedX = _basen.getBall(j).XPosition;
                     double comparedY = _basen.getBall(j).YPosition;
                     double euclideanDistance = Math.Sqrt((x - comparedX) * (x - comparedX) + (y - comparedY) * (y-comparedY));
-                    if (euclideanDistance <= ja.Radius + _basen.getBall(j).Radius)
+                    if (euclideanDistance < ja.Radius + _basen.getBall(j).Radius)
                     {
                         return j;
                     }
