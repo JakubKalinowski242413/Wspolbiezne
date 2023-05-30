@@ -36,5 +36,9 @@ namespace Dane
             BaseColor = baseColor;
             CurrentColor = baseColor;
         }
+        public string getBallData()
+        {
+            return "Position X: "+XPosition.ToString() + "\nPosition Y:" + YPosition.ToString() + "\nRadius:" + Radius.ToString();
+        }
     }
 }

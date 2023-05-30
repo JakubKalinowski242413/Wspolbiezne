@@ -16,5 +16,6 @@ namespace Dane
         double YSpeed { get; set; }
         int[] BaseColor { get; set; }
         int[] CurrentColor { get; set; }
+        string getBallData();
     }
 }
