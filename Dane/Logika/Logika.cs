@@ -17,7 +17,7 @@ namespace Logika
         static int _radius;
         static List<bool> isLocked = new List<bool>();
         static bool stopProgram = false;
-        static ILogging logger = new Dane.LoggerToFile();
+        static LoggerToFile logger = new Dane.LoggerToFile();
         private static System.Timers.Timer timer;
         static int collision1;
         static int collision2;
@@ -60,10 +60,15 @@ namespace Logika
 
         private static void LogBallData()
         {
-            TimeSpan timestamp = DateTime.Now.TimeOfDay;
-            ILoggingSingle loggedEvent = new CollisionChecker()
-            { CollisionTime = System.DateTime.Now, BallOne = _basen.getBall(collision1).getBallData(), BallTwo = _basen.getBall(collision2).getBallData() };
-            logger.writeLogs(loggedEvent);
+            for (int i = 0; i < _basen.getBallCount(); i++)
+            {
+                TimeSpan timestamp = DateTime.Now.TimeOfDay;
+                String loggedEvent = "Numer kulki: " + (i+1).ToString() + "\n X: " + _basen.getBall(i).XPosition
+                                       + "\n Y: " + _basen.getBall(i).YPosition + "\n Czas: " + timestamp.ToString() + "\n\n";
+                logger.writeLogs(loggedEvent);
+            }
+            logger.writeLogs("-------------------------");
+
         }
 
         public void Deinitialize()

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dane
 {
-    public class LoggerToFile :ILogging
+    public class LoggerToFile
     {
         readonly static string _filePath = "collision_logs_"+DateTime.Now.Hour.ToString()+"_"+ DateTime.Now.Minute.ToString() + "_" +
             DateTime.Now.Second.ToString() + ".txt";
@@ -24,7 +24,7 @@ namespace Dane
             _writer = new StreamWriter(_filePath, true);
         }
 
-        public void writeLogs(ILoggingSingle singleLog)
+        public void writeLogs(String singleLog)
         {
 
             if (Monitor.TryEnter(this))
@@ -34,13 +34,13 @@ namespace Dane
                     _writer.WriteLine(_list[i]);
                 }
                 _list.Clear();
-                _writer.WriteLine(singleLog.collisionData);
+                _writer.WriteLine(singleLog);
                 _writer.Flush();
                 Monitor.Exit(this);
             }
             else
             {
-                _list.Add(singleLog.collisionData);
+                _list.Add(singleLog);
             }
         }
     }
