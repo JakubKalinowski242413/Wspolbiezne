@@ -18,6 +18,10 @@ namespace Logika
         static List<bool> isLocked = new List<bool>();
         static bool stopProgram = false;
         static ILogging logger = new Dane.LoggerToFile();
+        private static System.Timers.Timer timer;
+        static int collision1;
+        static int collision2;
+
 
         List<int> radii = new List<int>();
         List<Task> _tasks = new List<Task>();
@@ -48,6 +52,18 @@ namespace Logika
             {
                 task.Start();
             }
+
+            timer = new System.Timers.Timer(10000);
+            timer.Elapsed += (sender, e) => LogBallData();
+            timer.Start();
+        }
+
+        private static void LogBallData()
+        {
+            TimeSpan timestamp = DateTime.Now.TimeOfDay;
+            ILoggingSingle loggedEvent = new CollisionChecker()
+            { CollisionTime = System.DateTime.Now, BallOne = _basen.getBall(collision1).getBallData(), BallTwo = _basen.getBall(collision2).getBallData() };
+            logger.writeLogs(loggedEvent);
         }
 
         public void Deinitialize()
@@ -80,8 +96,10 @@ namespace Logika
                     lock (isLocked)
                     {
                         isLocked[collisionIterator] = true;
-                    }    
+                    }
 
+                    collision1 = iterator;
+                    collision2 = collisionIterator;
                     double collisionX = _basen.getBall(collisionIterator).XPosition;
                     double collisionY = _basen.getBall(collisionIterator).YPosition;
                     double collisionAngle = Math.Atan2(collisionY - y, collisionX - x);
@@ -101,10 +119,6 @@ namespace Logika
                     double vy1_new = (((m1 - m2) * vy1 + 2 * m2 * vy2) * Math.Cos(collisionAngle) / (m1 + m2) - vx1 * Math.Sin(collisionAngle));
                     double vx2_new = (((m2 - m1) * vx2 + 2 * m1 * vx1) * Math.Cos(collisionAngle) / (m1 + m2) + vy2 * Math.Sin(collisionAngle));
                     double vy2_new = (((m2 - m1) * vy2 + 2 * m1 * vy1) * Math.Cos(collisionAngle) / (m1 + m2) - vx2 * Math.Sin(collisionAngle));
-
-                    ILoggingSingle loggedEvent = new CollisionChecker()
-                    { CollisionTime = System.DateTime.Now, BallOne = _basen.getBall(iterator).getBallData(), BallTwo = _basen.getBall(collisionIterator).getBallData()};
-                    logger.writeLogs(loggedEvent);
 
                     //Set values of speed
                     _basen.getBall(iterator).XSpeed = vx1_new;
